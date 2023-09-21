@@ -26,7 +26,7 @@ jobs:
       #     ./grype sbom.xml --fail-on critical
   docker:
     needs: integrate
-    if: ${{ github.event.pull_reequest.merged }}
+    if: ${{ github.event.pull_request.merged }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
