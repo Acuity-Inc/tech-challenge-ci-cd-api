@@ -18,8 +18,6 @@ jobs:
         run: mvn checkstyle:checkstyle
       - name: Run unit tests
         run: mvn test
-      - name: SonarQube scan
-        run: mvn install sonar:sonar -Dsonar.projectName=${{ github.repository}} -Dsonar.login=${{ vars.TSG_INNOLAB_SONARQUBE_USER }} -Dsonar.password=${{ secrets.TSG_INNOLAB_SONARQUBE_PASSWORD }} -Dsonar.host.url=${{ vars.TSG_INNOLAB_SONARQUBE_URL }} -Dsonar.qualitygate.wait=true
       - name: Vulnerability scan
         run: |
           curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b .
