@@ -40,9 +40,13 @@ jobs:
         with:
           username: ${{ vars.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Extract branch name
+        shell: bash
+        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+        id: extract_branch
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
           context: .
           push: true
-          tags: danieltmcc/tsg-innolab-cicd-api:app-${{ github.run_number }}
+          tags: danieltmcc/tsg-innolab-cicd-api:${{ steps.extract_branch.outputs.branch }}
