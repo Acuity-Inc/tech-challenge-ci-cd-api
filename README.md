@@ -1,3 +1,3 @@
 # tech-challenge-ci-cd-api
 
-Testing GitHub Actions
+Testing updated Docker image tag
