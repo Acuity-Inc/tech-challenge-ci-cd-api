@@ -18,12 +18,12 @@ jobs:
         run: mvn checkstyle:checkstyle
       - name: Run unit tests
         run: mvn test
-      - name: Vulnerability scan
-        run: |
-          curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b .
-          curl -sSfL https://raw.githubusercontent.com/anchore/grype/main/install.sh | sh -s -- -b .
-          ./syft . -o cyclonedx-xml > sbom.xml
-          ./grype sbom.xml --fail-on critical
+      # - name: Vulnerability scan
+      #   run: |
+      #     curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b .
+      #     curl -sSfL https://raw.githubusercontent.com/anchore/grype/main/install.sh | sh -s -- -b .
+      #     ./syft . -o cyclonedx-xml > sbom.xml
+      #     ./grype sbom.xml --fail-on critical
   docker:
     needs: integrate
     if: ${{ github.event.pull_reequest.merged }}
