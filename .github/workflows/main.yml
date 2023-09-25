@@ -40,18 +40,12 @@ jobs:
         with:
           username: ${{ vars.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-      - name: Extract branch name
-        shell: bash
-        run: |
-          BRANCH_NAME=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
-          echo "BRANCH_NAME=${BRANCH_NAME}" >> $GITHUB_ENV
-        id: extract_branch
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
           context: .
           push: true
-          tags: danieltmcc/tsg-innolab-cicd-api:${{ BRANCH_NAME }}
+          tags: danieltmcc/tsg-innolab-cicd-api:${{ GITHUB_SHA }}
   modifygit:
     needs: docker
     runs-on: ubuntu-latest
@@ -65,16 +59,15 @@ jobs:
         run: |
           git config user.email me@danieltmc.com
           git config user.name danieltmc
-          cd fluxcd/app2
+          cd fluxcd/tech-challenge-ci-cd-api
           pwd
-          cat app2.yaml
+          cat tech-challenge-ci-cd-api-app.yaml
           pwd
-          sed -i "s+danieltmcc/tsg-innolab-cicd-api.*+danieltmcc/tsg-innolab-cicd-api:$BRANCH_NAME+g" app2.yaml
+          sed -i "s+danieltmcc/tsg-innolab-cicd-api.*+danieltmcc/tsg-innolab-cicd-api:$GITHUB_SHA+g" app2.yaml
           cat app2.yaml
           git add .
-          git commit -m 'Done  by Github Actions   Job changemanifest: $BRANCH_NAME'
+          git commit -m 'Done  by Github Actions   Job changemanifest: $GITHUB_SHA'
           git push origin main
         env:
           GIT_USERNAME: ${{ vars.GIT_USERNAME }}
           GIT_PASSWORD: ${{ secrets.GIT_PASSWORD }}
-          BRANCH_NAME: $BRANCH_NAME
