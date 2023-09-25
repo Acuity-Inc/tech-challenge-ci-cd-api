@@ -45,7 +45,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: danieltmcc/tsg-innolab-cicd-api:${{ env.GITHUB_SHA }}
+          tags: ${{ format('danieltmcc/tsg-innolab-cicd-api:{0}', GITHUB_SHA) }}
   modifygit:
     needs: docker
     runs-on: ubuntu-latest
