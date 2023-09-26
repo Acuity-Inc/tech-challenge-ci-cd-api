@@ -55,11 +55,11 @@ jobs:
           git config user.name danieltmc
           git config credential.helper "!f() { echo \"username=danieltmc\\npassword=${GIT_PASSWORD}\"; }; f"
           cd fluxcd/tech-challenge-ci-cd-api
-          pwd
+          #pwd
           cat tech-challenge-ci-cd-api-app.yaml
-          pwd
+          #pwd
           sed -i "s+danieltmcc/tsg-innolab-cicd-api.*+danieltmcc/tsg-innolab-cicd-api:$GITHUB_SHA+g" tech-challenge-ci-cd-api-app.yaml
-          cat tech-challenge-ci-cd-api-app.yaml
+          #cat tech-challenge-ci-cd-api-app.yaml
           git add .
           git commit -m 'Done  by Github Actions   Job changemanifest: $GITHUB_SHA'
           git push origin main
