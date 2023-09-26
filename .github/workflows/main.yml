@@ -44,7 +44,7 @@ jobs:
           # tags: "danieltmcc/tsg-innolab-cicd-api:latest,danieltmcc/tsg-innolab-cicd-api:${{ env.GITHUB_SHA }}"
           tags: |
             latest
-            ${{ env.GITHUB_SHA }}
+            ${GITHUB_SHA}
   modifygit:
     needs: docker
     runs-on: ubuntu-latest
