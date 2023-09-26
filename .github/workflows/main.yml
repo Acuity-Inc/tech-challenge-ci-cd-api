@@ -53,7 +53,6 @@ jobs:
         run: |
           git config user.email me@danieltmc.com
           git config user.name danieltmc
-          #git config credential.helper '!f() { echo username=danieltmc; echo "password=$GIT_PASSWORD"; };f'
           git config credential.helper "!f() { echo \"username=danieltmc\\npassword=${GIT_PASSWORD}\"; }; f"
           cd fluxcd/tech-challenge-ci-cd-api
           pwd
