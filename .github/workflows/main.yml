@@ -48,7 +48,7 @@ jobs:
         name: changing the deployment of git repo
         with:
           repository: 'Acuity-Inc/tsg-innolab-cncf-delivery-bakeoff'
-          #token: ${{ secrets.GIT_PASSWORD }}
+          token: ${{ secrets.GH_PAT }}
       - name: modify the image
         run: |
           git config user.email me@danieltmc.com
