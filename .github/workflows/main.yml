@@ -39,12 +39,10 @@ jobs:
         with:
           context: .
           push: true
-          images: |
-            danieltmcc/tsg-innolab-cicd-api
-          # tags: "danieltmcc/tsg-innolab-cicd-api:latest,danieltmcc/tsg-innolab-cicd-api:${{ env.GITHUB_SHA }}"
-          tags: |
-            latest
-            ${GITHUB_SHA}
+          tags: "danieltmcc/tsg-innolab-cicd-api:${{ GITHUB_SHA }}"
+          #tags: |
+          #  latest
+          #  ${GITHUB_SHA}
   modifygit:
     needs: docker
     runs-on: ubuntu-latest
