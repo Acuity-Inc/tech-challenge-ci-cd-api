@@ -20,7 +20,7 @@ jobs:
         run: mvn test
   docker:
     needs: integrate
-    if: ${{ github.event.pull_request.merged }}
+    if: ${{ github.event_name == 'push' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
