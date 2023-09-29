@@ -1,3 +1,3 @@
 # tech-challenge-ci-cd-api
 
-Testing manifest update - try #25
+Testing manifest update - try #26
