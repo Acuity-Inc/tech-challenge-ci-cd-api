@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class LivelinessController {
 	@GetMapping("/ping")
 	public ResponseEntity<String> liveliness() {
-		return ResponseEntity.ok("clive test");
+		return ResponseEntity.ok("Daniel test");
 	}
 }
