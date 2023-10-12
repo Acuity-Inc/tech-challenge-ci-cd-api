@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: tsg-innolab-app
+  name: tsg-innolab-app
+  namespace: tekton-tasks
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tsg-innolab-app
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: tsg-innolab-app
+    spec:
+      containers:
+      - image: danieltmcc/tsg-innolab-cicd-api:95c15e502c77531a2a9f80e97babc06126dec0aa
+        name: tsg-innolab-app
+        ports:
+        - containerPort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tsg-innolab-app-service
+  namespace: tekton-tasks
+  labels:
+    app: tsg-innolab-app-service
+spec:
+  type: LoadBalancer
+  ports:
+  - name: tsg-innolab-app
+    port: 80
+    targetPort: 8080
+  selector:
+    app: tsg-innolab-app
