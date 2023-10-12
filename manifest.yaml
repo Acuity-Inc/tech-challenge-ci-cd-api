@@ -17,7 +17,7 @@ spec:
         app: tsg-innolab-app
     spec:
       containers:
-      - image: danieltmcc/tsg-innolab-cicd-api:95c15e502c77531a2a9f80e97babc06126dec0aa
+      - image: __IMAGE__
         name: tsg-innolab-app
         ports:
         - containerPort: 8080
